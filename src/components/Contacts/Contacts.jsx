@@ -1,40 +1,51 @@
-import { useEffect } from 'react'
 import { FormAddContacts } from 'components/FormAddContacts/FormAddContacts'
 import { ContactsList } from 'components/ContactsList/ContactsList'
-import { nanoid } from 'nanoid'
-import { useState } from 'react'
-
+// import { nanoid } from 'nanoid'
+// import { useState,useEffect } from 'react'
+// useDispatch -для вызова actions;
+// useSelector - для доступа к store;
+import { useSelector, useDispatch } from 'react-redux';
+import { getContacts, getFilter } from 'redux/selectors';
+import { addContact, removeContact, setFilter } from 'redux/contactsActions';
 
 export function Contacts() {
-  const [contacts, setContacts] = useState(()=> {
-    const value = JSON.parse(localStorage.getItem("contacts"));
-    return value ?? [];
-  })
-  const [filter, setFilter] = useState('');
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);  
+  const dispatch = useDispatch(); 
+  // const [contacts, setContacts] = useState(()=> {
+  //   const value = JSON.parse(localStorage.getItem("contacts"));
+  //   return value ?? [];
+  // })
+  // const [filter, setFilter] = useState('');
 
-useEffect(()=> {
-  console.log("useEffect run");
-  localStorage.setItem("contacts", JSON.stringify(contacts))
-  }, [contacts]);
+// useEffect(()=> {
+//   console.log("useEffect run");
+//   localStorage.setItem("contacts", JSON.stringify(contacts))
+//   }, [contacts]);
 
-  const addContact = (contact) => {
+  const onAddContact = (contact) => {
     if (isDuplicate(contact)) {
-        return alert(`${contact.name}has already added`)
+        return alert(`${contact.name} has already added`)
     }
-    setContacts((prev)=> {
-        const contactsId = {
-            id: nanoid(), 
-            ...contact}
-      return [...prev, contactsId]
-    })
+    const action = addContact(contact);
+    dispatch(action);
+    // setContacts((prev)=> {
+    //     const contactsId = {
+    //         id: nanoid(), 
+    //         ...contact}
+    //   return [...prev, contactsId]
+    // })
   }
-  const removeContact =(id)=> {
-    const newContacts = contacts.filter((item)=> item.id !== id);
-    return  setContacts(newContacts);
+  const onRemoveContact =(id)=> {
+    const action = removeContact(id);
+    dispatch(action);
+    // const newContacts = contacts.filter((item)=> item.id !== id);
+    // return  setContacts(newContacts);
   }
   const handleChange = (e) => {
     const { value} = e.target;
-    setFilter(value);
+    dispatch(setFilter(value))
+    // setFilter(value);
   }
   const isDuplicate = ({name})=> {
     const result = contacts.find((item) => item.name === name);
@@ -57,7 +68,7 @@ useEffect(()=> {
   return (
     <div>
         <div>
-            <FormAddContacts onSubmit={addContact} />
+            <FormAddContacts onSubmit={onAddContact} />
         </div>
         <div>
             <h2>Contacts</h2>
@@ -68,7 +79,7 @@ useEffect(()=> {
                 type="text" 
                 name='filter' 
             />
-            <ContactsList items= {filteredContacts} removeContact={removeContact}/>
+            <ContactsList items= {filteredContacts} removeContact={onRemoveContact}/>
         </div>
     </div>
         
