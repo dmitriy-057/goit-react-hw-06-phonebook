@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
-import {setFilter} from "./contactsActions"; 
+import {setFilter} from "./filterActions"; 
 
 const filterReducer = createReducer('', {
-    [setFilter.type]: ( state, action) => action.payload
+    [setFilter.type]: ( _, action) => action.payload
  })
  export default filterReducer;

@@ -5,8 +5,8 @@ import { ContactsList } from 'components/ContactsList/ContactsList'
 // useDispatch -для вызова actions;
 // useSelector - для доступа к store;
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts, getFilter } from 'redux/selectors';
-import { addContact, removeContact, setFilter } from 'redux/contactsActions';
+import { getContacts, getFilter } from 'redux/Contacts/contactsSelectors';
+import { addContact, removeContact, setFilter } from 'redux/Contacts/contactsActions';
 
 export function Contacts() {
   const contacts = useSelector(getContacts);

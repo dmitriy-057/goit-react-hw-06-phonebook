@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { addContact, removeContact} from "./contactsActions"; 
+import { addContact, removeContact } from "./contactsActions"; 
 
  const contactsReducer = createReducer([], {
     [addContact.type]: (store, action) => {
