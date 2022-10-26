@@ -1,15 +1,16 @@
 import css from "./ContactsList.module.css"
 import PropTypes from "prop-types";
+
 export function ContactsList({items, removeContact}) {
-  
+  const dropItem = [].concat(...Object.values(items));
   return (
     <ul>
-        {items.map(({name,number, id}) => {
-       return <li className={css.ContactItem}
+        {dropItem.map(({name,number, id}) => {
+       return  <li className={css.ContactItem}
         key={id}>{name}: <span className={css.number}>{number}</span>
         <button className={css.button} onClick={()=> removeContact(id)}>Delete</button>
        </li> 
-    })}
+      })}
     </ul>
   )
 }

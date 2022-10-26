@@ -7,8 +7,8 @@ import { ContactsList } from 'components/ContactsList/ContactsList'
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/Contacts/contactsSelectors';
 import { getFilter } from 'redux/Filter/filterSelectors'
-import { addContact, removeContact} from 'redux/Contacts/contactsActions';
-import { setFilter } from 'redux/Filter/filterActions';
+import { addContact, removeContact} from 'redux/Contacts/contactsSlice';
+import { setFilter } from 'redux/Filter/filterSlice';
 
 export function Contacts() {
   const contacts = useSelector(getContacts);
@@ -50,7 +50,7 @@ export function Contacts() {
     // setFilter(value);
   }
   const isDuplicate = ({name})=> {
-    const result = contacts.find((item) => item.name === name);
+    const result = contacts.find((dropItem) => dropItem.name === name);
     return result;
   }
 
@@ -82,6 +82,7 @@ export function Contacts() {
                 name='filter' 
             />
             <ContactsList items= {filteredContacts} removeContact={onRemoveContact}/>
+            
         </div>
     </div>
         
