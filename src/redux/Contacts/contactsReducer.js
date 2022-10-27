@@ -2,10 +2,10 @@ import { createReducer } from "@reduxjs/toolkit";
 import { addContact, removeContact } from "./contactsActions"; 
 
  const contactsReducer = createReducer([], {
-    [addContact.type]: (store, action) => {
+    [addContact]: (store, action) => {
         store.push(action.payload);
     },
-    [removeContact.type]: (store, action) => {
+    [removeContact]: (store, action) => {
         store.filter( ({id}) => id !== action.payload)
     }
  })
