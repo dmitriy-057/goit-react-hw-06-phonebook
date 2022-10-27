@@ -12,6 +12,7 @@ import { setFilter } from 'redux/Filter/filterSlice';
 
 export function Contacts() {
   const contacts = useSelector(getContacts);
+  console.log('contacts', contacts);
   const filter = useSelector(getFilter);  
   const dispatch = useDispatch(); 
   // const [contacts, setContacts] = useState(()=> {
@@ -26,7 +27,9 @@ export function Contacts() {
 //   }, [contacts]);
 
   const onAddContact = (contact) => {
+    console.log('contact', contact)
     if (isDuplicate(contact)) {
+
         return alert(`${contact.name} has already added`)
     }
     const action = addContact(contact);
@@ -50,7 +53,7 @@ export function Contacts() {
     // setFilter(value);
   }
   const isDuplicate = ({name})=> {
-    const result = contacts.find((dropItem) => dropItem.name === name);
+    const result = contacts.find((item) => item.name === name);
     return result;
   }
 
@@ -81,7 +84,7 @@ export function Contacts() {
                 type="text" 
                 name='filter' 
             />
-            <ContactsList items= {filteredContacts} removeContact={onRemoveContact}/>
+            <ContactsList contacts={filteredContacts} removeContact={onRemoveContact}/>
             
         </div>
     </div>

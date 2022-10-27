@@ -23,7 +23,7 @@ export function FormAddContacts({onSubmit}) {
   const handleSubmit = (e) => {
     e.preventDefault()
     const {name,number} = state;
-    onSubmit({name,number})
+    onSubmit({name,number, id: nanoid()})
     setState({
       name: '',
       number: ''

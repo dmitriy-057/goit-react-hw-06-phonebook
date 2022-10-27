@@ -1,11 +1,12 @@
 import css from "./ContactsList.module.css"
 import PropTypes from "prop-types";
 
-export function ContactsList({items, removeContact}) {
-  const dropItem = [].concat(...Object.values(items));
+export function ContactsList({contacts, removeContact}) {
+  // const dropItem = [].concat(...Object.values(items));
+  console.log('items', contacts);
   return (
     <ul>
-        {dropItem.map(({name,number, id}) => {
+      {contacts.map(({name,number, id}) => {
        return  <li className={css.ContactItem}
         key={id}>{name}: <span className={css.number}>{number}</span>
         <button className={css.button} onClick={()=> removeContact(id)}>Delete</button>
@@ -18,6 +19,6 @@ ContactsList.propTypes = {
     contacts: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string,
-      number: PropTypes.number,
+      number: PropTypes.string,
     }))
   }
