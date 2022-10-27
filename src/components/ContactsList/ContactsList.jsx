@@ -2,7 +2,6 @@ import css from "./ContactsList.module.css"
 import PropTypes from "prop-types";
 
 export function ContactsList({contacts, removeContact}) {
-  // const dropItem = [].concat(...Object.values(items));
   console.log('items', contacts);
   return (
     <ul>
