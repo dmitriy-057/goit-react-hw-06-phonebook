@@ -1,1 +1,1 @@
-export const getContacts = store => store.contacts.contacts;
+export const getContacts = store => store.contacts;

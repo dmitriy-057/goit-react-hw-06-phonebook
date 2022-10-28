@@ -2,12 +2,18 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid'
 import css from './FormAddContacts.module.css'
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from 'react-redux';
+import { getContacts } from 'redux/Contacts/contactsSelectors';
+import { addContact} from 'redux/Contacts/contactsSlice';
 
-export function FormAddContacts({onSubmit}) {
+export function FormAddContacts() {
   const [state, setState] = useState({
     name: '',
     number: ''
   })
+  const contacts = useSelector(getContacts);
+  console.log('contacts2', contacts);
+  const dispatch = useDispatch(); 
   const nameId = nanoid()
   const numberId = nanoid()
 
@@ -20,10 +26,20 @@ export function FormAddContacts({onSubmit}) {
       }
     })
   }
+  const onAddContact = (contact) => {
+    console.log('contact', contact)
+    // if (isDuplicate(contact)) {
+
+    //     return alert(`${contact.name} has already added`)
+    // }
+    console.log('qwe', addContact());
+    dispatch(addContact(contact));
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const {name,number} = state;
-    onSubmit({name,number, id: nanoid()})
+    onAddContact({name,number, id: nanoid()})
     setState({
       name: '',
       number: ''

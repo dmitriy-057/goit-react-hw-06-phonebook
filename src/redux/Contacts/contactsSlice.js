@@ -4,16 +4,20 @@ const contactsSlice = createSlice({
     name: 'contacts',
     initialState: [],
     reducers: {
-        addContact:(store, action) => {
-            store.push(action.payload)
-        },
-        prepare:( data) => {
-            return {
-                payload:{
-                    ...data,
-                    id: nanoid()
-                }
-            }
+        addContact: {
+            reducer(store, { payload }) {
+                console.log('store', store);
+                console.log('payload', payload);
+            store.push(payload);
+            },
+            prepare(data) {
+                return {
+                    payload: {
+                        ...data,
+                        id: nanoid(),
+                    },
+                };
+            },
         },
         removeContact: (store, action) => store.filter(({id})=> id !== action.payload)
     }

@@ -18,7 +18,7 @@ export function ContactsList({contacts, removeContact}) {
 }
 
 ContactsList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
+    contacts: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string,
     number: PropTypes.string,

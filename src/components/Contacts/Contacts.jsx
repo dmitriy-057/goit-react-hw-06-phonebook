@@ -4,6 +4,7 @@ import { ContactsList } from 'components/ContactsList/ContactsList'
 // import { useState,useEffect } from 'react'
 // useDispatch -для вызова actions;
 // useSelector - для доступа к store;
+
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/Contacts/contactsSelectors';
 import { getFilter } from 'redux/Filter/filterSelectors'
@@ -26,21 +27,23 @@ export function Contacts() {
 //   localStorage.setItem("contacts", JSON.stringify(contacts))
 //   }, [contacts]);
 
-  const onAddContact = (contact) => {
-    console.log('contact', contact)
-    if (isDuplicate(contact)) {
+  // const onAddContact = (contact) => {
+  //   console.log('contact', contact)
+  //   if (isDuplicate(contact)) {
 
-        return alert(`${contact.name} has already added`)
-    }
-    const action = addContact(contact);
-    dispatch(action);
-    // setContacts((prev)=> {
-    //     const contactsId = {
-    //         id: nanoid(), 
-    //         ...contact}
-    //   return [...prev, contactsId]
-    // })
-  }
+  //       return alert(`${contact.name} has already added`)
+  //   }
+  //   // const action = addContact(contact);
+  //   console.log('qwe', addContact());
+  //   dispatch(addContact(contact));
+    
+  //   // setContacts((prev)=> {
+  //   //     const contactsId = {
+  //   //         id: nanoid(), 
+  //   //         ...contact}
+  //   //   return [...prev, contactsId]
+  //   // })
+  // }
   const onRemoveContact =(id)=> {
     const action = removeContact(id);
     dispatch(action);
@@ -58,6 +61,7 @@ export function Contacts() {
   }
 
   const getFilteredContacts = () => {
+    console.log("contacts", contacts);
     if(!filter) {
         return contacts;
     }
@@ -73,7 +77,9 @@ export function Contacts() {
   return (
     <div>
         <div>
-            <FormAddContacts onSubmit={onAddContact} />
+            <FormAddContacts 
+            // onSubmit={onAddContact} 
+            />
         </div>
         <div>
             <h2>Contacts</h2>
