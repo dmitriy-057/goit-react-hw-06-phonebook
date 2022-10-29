@@ -27,23 +27,23 @@ export function Contacts() {
 //   localStorage.setItem("contacts", JSON.stringify(contacts))
 //   }, [contacts]);
 
-  // const onAddContact = (contact) => {
-  //   console.log('contact', contact)
-  //   if (isDuplicate(contact)) {
+  const onAddContact = (contact) => {
+    console.log('contact', contact)
+    if (isDuplicate(contact)) {
 
-  //       return alert(`${contact.name} has already added`)
-  //   }
-  //   // const action = addContact(contact);
-  //   console.log('qwe', addContact());
-  //   dispatch(addContact(contact));
+        return alert(`${contact.name} has already added`)
+    }
+    // const action = addContact(contact);
+    console.log('qwe', addContact());
+    dispatch(addContact(contact));
     
-  //   // setContacts((prev)=> {
-  //   //     const contactsId = {
-  //   //         id: nanoid(), 
-  //   //         ...contact}
-  //   //   return [...prev, contactsId]
-  //   // })
-  // }
+    // setContacts((prev)=> {
+    //     const contactsId = {
+    //         id: nanoid(), 
+    //         ...contact}
+    //   return [...prev, contactsId]
+    // })
+  }
   const onRemoveContact =(id)=> {
     const action = removeContact(id);
     dispatch(action);
@@ -78,7 +78,7 @@ export function Contacts() {
     <div>
         <div>
             <FormAddContacts 
-            // onSubmit={onAddContact} 
+            onSubmit={onAddContact} 
             />
         </div>
         <div>

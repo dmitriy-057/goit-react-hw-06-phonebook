@@ -1,15 +1,15 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { addContact, removeContact } from "./contactsActions"; 
+// import { createReducer } from "@reduxjs/toolkit";
+// import { addContact, removeContact } from "./contactsActions"; 
 
- const contactsReducer = createReducer([], {
-    [addContact]: (store, action) => {
-        store.push(action.payload);
-    },
-    [removeContact]: (store, action) => {
-        store.filter( ({id}) => id !== action.payload)
-    }
- })
- export default contactsReducer;
+//  const contactsReducer = createReducer([], {
+//     [addContact]: (store, action) => {
+//         store.contacts.push(action.payload);
+//     },
+//     [removeContact]: (store, action) => {
+//         store.filter( ({id}) => id !== action.payload)
+//     }
+//  })
+//  export default contactsReducer;
 
 //  const reducer = (store = initialState, action) => {
 //     switch(action.type) {
