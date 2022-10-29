@@ -24,6 +24,7 @@ export function FormAddContacts({onSubmit}) {
     e.preventDefault()
     const {name,number} = state;
     onSubmit({name,number})
+    console.log(onSubmit)
     setState({
       name: '',
       number: ''

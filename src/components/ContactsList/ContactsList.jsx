@@ -1,4 +1,4 @@
-import css from "./ContactsList.module.css"
+import css from "./ContactsList.module.css";
 import PropTypes from "prop-types";
 
 export function ContactsList({contacts, removeContact}) {
