@@ -17,14 +17,15 @@ export function Contacts() {
   const filter = useSelector(getFilter);  
   const dispatch = useDispatch(); 
 
-  const onAddContact = (contact, name, number) => {
-    console.log('contact', contact)
-    if (isDuplicate(contact)) {
+  const onAddContact = (name, number) => {
+    console.log('wed', name);
+    console.log('efg', number);
+    console.log('contact', contacts)
+    if (isDuplicate(name, number)) {
 
-        return alert(`${contact.name} has already added`)
+        return alert(`${name} and ${number} has already added`)
     }
     console.log('qwe', addContact());
-    // dispatch(addContact(contact));
     dispatch(addContact({ name, number, id: nanoid() }));
   }
   const onRemoveContact =(id)=> {
@@ -36,8 +37,8 @@ export function Contacts() {
     const { value} = e.target;
     dispatch(setFilter(value))
   }
-  const isDuplicate = ({name})=> {
-    const result = contacts.find((item) => item.name === name);
+  const isDuplicate = (name, number)=> {
+    const result = contacts.find((item) => item.name === name && item.number === number) ;
     return result;
   }
 
