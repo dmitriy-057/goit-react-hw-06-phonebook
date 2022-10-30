@@ -14,7 +14,7 @@ import {
     REGISTER,} from "redux-persist";
 
 const contactsPersistConfig = {
-    key:'root',
+    key:'contacts',
     storage,
 }
 

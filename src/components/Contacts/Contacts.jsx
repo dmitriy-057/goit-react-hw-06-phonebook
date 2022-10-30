@@ -13,19 +13,14 @@ import { setFilter } from 'redux/Filter/filterSlice';
 
 export function Contacts() {
   const contacts = useSelector(getContacts);
-  console.log('contacts', contacts);
   const filter = useSelector(getFilter);  
   const dispatch = useDispatch(); 
 
   const onAddContact = (name, number) => {
-    console.log('wed', name);
-    console.log('efg', number);
-    console.log('contact', contacts)
     if (isDuplicate(name, number)) {
 
         return alert(`${name} and ${number} has already added`)
     }
-    console.log('qwe', addContact());
     dispatch(addContact({ name, number, id: nanoid() }));
   }
   const onRemoveContact =(id)=> {
@@ -43,7 +38,6 @@ export function Contacts() {
   }
 
   const getFilteredContacts = () => {
-    console.log("contacts", contacts);
     if(!filter) {
         return contacts;
     }
