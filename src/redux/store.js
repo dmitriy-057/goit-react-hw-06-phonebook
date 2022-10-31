@@ -16,6 +16,7 @@ import {
 const contactsPersistConfig = {
     key:'contacts',
     storage,
+    blacklist: ['filter'],
 }
 
 const reducer = combineReducers({
